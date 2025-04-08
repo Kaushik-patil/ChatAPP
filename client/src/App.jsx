@@ -1,13 +1,7 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import './index.css';
-const Navbar = lazy(() => import('./components/Navbar'));
+import Navbar from './components/Navbar';
 import { Routes, Route, Navigate } from 'react-router-dom';
-
-// const HomePage = lazy(() => import('./Pages/HomePage'));
-// const SignUpPage = lazy(()=>import( './Pages/SignUpPage'));
-// const LoginPage  = lazy(()=>import('./Pages/LoginPage'  ));         
-// const SettingPage= lazy (()=>import('./Pages/SettingPage'));
-// const ProfilePage = lazy(()=>import('./Pages/ProfilePage'));
 
 import HomePage from './Pages/HomePage';
 import SignUpPage from './Pages/SignUpPage';
@@ -23,12 +17,6 @@ import { Loader } from 'lucide-react'
 import { Toaster } from 'react-hot-toast'
 
 
-// const fallBackLoader = ()=>{
-//    return( <div className='flex items-center justify-center h-screen'>
-//       <Loader className='size-10 animate-spin'></Loader>
-//    </div>
-//    );
-// }
 
 
 function App() {
@@ -57,6 +45,7 @@ function App() {
          <div >
 
             <Navbar />
+              
             <Routes>
                <Route path='/' element={authUser ? <HomePage /> : <Navigate to="/login" />} />
                <Route path='/signup' element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
