@@ -46,10 +46,12 @@ function App() {
       <div data-theme={theme}>
 
          <div >
-            <Suspense fallback={fallBackLoader()}>
+
+            <Navbar/>
+             {/* <Suspense fallback={fallBackLoader()}>
                <Navbar/>
-            </Suspense>
-            <Routes>
+            </Suspense> */}
+            {/* <Routes>
                <Route path='/' element={authUser ? <HomePage /> : <Navigate to="/login" />} />
 
                <Route path='/signup' element={!authUser ?
@@ -78,7 +80,19 @@ function App() {
                   </Suspense>
                   : <Navigate to="/login" />} />
 
-            </Routes>
+            </Routes> */}
+
+
+            <Suspense fallback={<fallBackLoader/>}>
+  <Routes>
+    <Route path='/' element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+    <Route path='/signup' element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
+    <Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+    <Route path='/settings' element={<SettingPage />} />
+    <Route path='/profile' element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
+  </Routes>
+</Suspense>
+
 
 
             <Toaster />
